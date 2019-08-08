@@ -9,16 +9,16 @@ class HomeScreen extends Component {
         this.state = {};
     }
 
-    componentDidMount() { 
+    componentDidMount() {
         
     }
 
     render() {
         return (
-            <View style={{flex:1}}>
+            <View style={{flex:1}} testID="home-screen">
                 <Header/>
                 <Text>Home</Text>
-                <LottieView source={require('../../assets/8252-looking-for-jobs.json')} autoPlay loop />
+                <LottieView style={{width:250,height:250}} source={require('../../assets/8252-looking-for-jobs.json')} autoPlay loop />
             </View>
         );
     }
