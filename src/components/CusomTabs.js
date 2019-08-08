@@ -56,7 +56,7 @@ class CustomTab extends Component {
 				>
 					{this.state.tabs.map((item, index) => {
 						return (
-							<TouchableWithoutFeedback testID={"navButton_"+index} key={index} onPress={() => this.openTab(item)}>
+							<TouchableWithoutFeedback testID={item.routeName+"-button"} key={index} onPress={() => this.openTab(item)}>
                                 <View style={{flex:1,justifyContent:"center", alignItems: "center"}}>
                                     <Icon size={28} name={item.icon} style={{ color: this.getColor(item) }} />
                                 </View>

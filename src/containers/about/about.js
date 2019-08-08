@@ -15,7 +15,7 @@ class AboutScreen extends Component {
 
     render() {
         return (
-            <View style={{flex:1}}>
+            <View testID="about-screen" style={{flex:1}}>
                 <Header/>
                 <Text>About</Text>
                 <FastImage
