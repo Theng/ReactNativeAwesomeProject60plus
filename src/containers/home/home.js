@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-import { View, Text  } from "react-native";
+import { View, FlatList  } from "react-native";
 import Header from "../../components/MainHeader"
-import LottieView from 'lottie-react-native';
-
+import FastImage from 'react-native-fast-image'
+import c from "../../constant"
 class HomeScreen extends Component {
+    list = []
     constructor(props) {
         super(props);
         this.state = {};
+        for (let index = 0; index < 200; index++) {
+            this.list.push(index)
+        }
     }
 
     componentDidMount() {
@@ -17,8 +21,22 @@ class HomeScreen extends Component {
         return (
             <View style={{flex:1}} testID="home-screen">
                 <Header/>
-                <Text>Home</Text>
-                <LottieView style={{width:250,height:250}} source={require('../../assets/8252-looking-for-jobs.json')} autoPlay loop />
+                <FlatList
+                    style={{margin:4}}
+                    data={this.list}
+                    numColumns={2}
+                    keyExtractor={item=> item.toString()}
+                    renderItem={({item}) => <FastImage
+                        key={item}
+                        style={{ width: (c.deviceWidth*.5)-12, height: (c.deviceWidth*.5)-12,margin:4 , backgroundColor:"#bdc3c7"}}
+                        source={{
+                            uri: 'https://unsplash.it/400/400?image='+item,
+                            headers: { Authorization: 'someAuthToken' },
+                            priority: FastImage.priority.normal,
+                        }}
+                        resizeMode={FastImage.resizeMode.contain}
+                    />}
+                />
             </View>
         );
     }
