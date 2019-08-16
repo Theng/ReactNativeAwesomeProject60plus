@@ -22,7 +22,7 @@ class HomeScreen extends Component {
             <View style={{flex:1}} testID="home-screen">
                 <Header/>
                 <FlatList
-                    style={{margin:4}}
+                    style={{padding: 4}}
                     data={this.list}
                     numColumns={2}
                     keyExtractor={item=> item.toString()}
