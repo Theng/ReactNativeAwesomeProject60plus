@@ -1,0 +1,8 @@
+const reduxConstants = {
+    FETCH_SAMPLE: "FETCH_SAMPLE",
+    FETCHING_SAMPLE: "FETCHING_SAMPLE",
+    FETCH_SAMPLE_SUCCESS: "FETCH_SAMPLE_SUCCESS",
+    FETCH_SAMPLE_ERROR: "FETCH_SAMPLE_ERROR"
+}
+
+export default reduxConstants;
