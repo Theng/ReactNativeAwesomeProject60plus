@@ -5,6 +5,7 @@ import LottieView from "lottie-react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchSample } from "../../redux/actions";
+import { withTranslation } from "react-i18next";
 
 class AboutScreen extends Component {
     constructor(props) {
@@ -40,6 +41,7 @@ class AboutScreen extends Component {
                         autoPlay
                         loop
                     />
+                    <Text style={{padding:24}}>{this.props.t("hello world")}</Text>
                     <TouchableOpacity
                         onPress={this.fetchSampleData}
                         style={styles.buttonStyle}
@@ -77,7 +79,7 @@ function matchDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     matchDispatchToProps
-)(AboutScreen);
+)(withTranslation("common")(AboutScreen));
 
 const styles = {
     buttonStyle: {

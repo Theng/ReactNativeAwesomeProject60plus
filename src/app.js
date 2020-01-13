@@ -16,9 +16,17 @@ import createSagaMiddleware from "redux-saga";
 import { rootReducer } from "./redux/reducers";
 import rootSagas from "./redux/sagas";
 
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
+
+
+
 import HomeScreen from "./containers/home/home";
 import AboutScreen from "./containers/about/about";
 import CusomTabs from "./components/CusomTabs";
+
+// init language
+i18n.changeLanguage("kh");
 
 // Redux =======
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -60,7 +68,9 @@ class RootApp extends Component {
     render() {
         return (
             <Provider store={store}>
-                <TabNavigator />
+                <I18nextProvider i18n={i18n}>
+                    <TabNavigator />
+                </I18nextProvider>
             </Provider>
         );
     }
