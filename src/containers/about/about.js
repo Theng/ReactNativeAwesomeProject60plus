@@ -1,33 +1,30 @@
 import React, { Component } from "react";
-import { View, ScrollView, TouchableOpacity, Text } from "react-native";
+import { View, ScrollView, Keyboard, Button, Text } from "react-native";
 import Header from "../../components/MainHeader";
-import LottieView from "lottie-react-native";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { fetchSample } from "../../redux/actions";
-import { withTranslation } from "react-i18next";
-
+import * as Yup from "yup";
+import TextFormField from "../../components/FormFields/TextFormField";
+import { Formik } from "formik";
+const phoneRegExp = /^(0?)([1-9][0-9])(\d{3})(\d{3,4})$/;
+const SignupSchema = Yup.object().shape({
+    firstName: Yup.string()
+        .min(2, "Too Short!")
+        .max(50, "Too Long!")
+        .required("Required"),
+    lastName: Yup.string()
+        .min(2, "Too Short!")
+        .max(50, "Too Long!")
+        .required("Required"),
+    email: Yup.string()
+        .email("Not an email.")
+        .required("Required"),
+    phone: Yup.string()
+        .matches(phoneRegExp, "Phone number is not valid")
+        .required("Required")
+});
 class AboutScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {};
-    }
-
-    fetchSampleData = () => {
-        this.props.fetchSample();
-    };
-
-    listSample = () => {
-        console.log(this.props.sample.data)
-        return (
-            this.props.sample.data?
-            <View>
-                {this.props.sample.data.map((item,index)=>{
-                    return(<Text style={{padding:16}} key={index}>{item.name}</Text>)
-                })}
-            </View>:
-            null
-        )
     }
 
     render() {
@@ -35,62 +32,53 @@ class AboutScreen extends Component {
             <View testID="about-screen" style={{ flex: 1 }}>
                 <Header />
                 <ScrollView>
-                    <LottieView
-                        style={{ width: 250, height: 250, alignSelf: "center" }}
-                        source={require("../../assets/8252-looking-for-jobs.json")}
-                        autoPlay
-                        loop
-                    />
-                    <Text style={{padding:24}}>{this.props.t("hello world")}</Text>
-                    <TouchableOpacity
-                        onPress={this.fetchSampleData}
-                        style={styles.buttonStyle}
+                    <Text style={{textAlign:"center",fontSize:24,margin:16}}>Formik with Yup validation</Text>
+                    <Formik
+                        validationSchema={SignupSchema}
+                        initialValues={{
+                            firstName: "",
+                            lastName: "",
+                            email: "",
+                            phone: ""
+                        }}
+                        onSubmit={values => {
+                            console.log("form values: ", values);
+                            Keyboard.dismiss();
+                        }}
                     >
-                        <Text style={styles.buttonText}>
-                            {this.props.sample.fetching
-                                ? "..."
-                                : this.props.fetchError
-                                ? "Feech error"
-                                : "Fetch sample data"}
-                        </Text>
-                    </TouchableOpacity>
-                    {this.listSample()}
+                        {props => (
+                            <View>
+                                <TextFormField
+                                    {...props}
+                                    label="First name"
+                                    name="firstName"
+                                />
+                                <TextFormField
+                                    {...props}
+                                    label="Last name"
+                                    name="lastName"
+                                />
+                                <TextFormField
+                                    {...props}
+                                    label="Email"
+                                    name="email"
+                                />
+                                <TextFormField
+                                    {...props}
+                                    label="Phone"
+                                    name="phone"
+                                />
+                                <Button
+                                    onPress={props.handleSubmit}
+                                    title="Submit"
+                                />
+                            </View>
+                        )}
+                    </Formik>
                 </ScrollView>
             </View>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        sample: state.sample
-    };
-};
-
-function matchDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            fetchSample
-        },
-        dispatch
-    );
-}
-
-export default connect(
-    mapStateToProps,
-    matchDispatchToProps
-)(withTranslation("common")(AboutScreen));
-
-const styles = {
-    buttonStyle: {
-        padding: 16,
-        margin: 16,
-        backgroundColor: "#3498db",
-        width: 160
-    },
-    buttonText: {
-        color: "white",
-        textAlign: "center",
-        fontWeight: "bold"
-    }
-};
+export default AboutScreen;

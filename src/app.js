@@ -43,7 +43,7 @@ const TabNavigator = createAppContainer(
     createBottomTabNavigator(
         {
             HomeScreen: HomeScreen,
-            AboutScreen: AboutScreen
+            AboutScreen: AboutScreen,
         },
         {
             animationEnabled: false,
