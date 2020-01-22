@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 import Header from "../../components/MainHeader"
 import Hello from "../../components/Hello"
+import DisplayHelloRedux from "../../components/DisplayHelloRedux"
 class HomeScreen extends Component {
     list = []
     number = 0
@@ -23,6 +24,7 @@ class HomeScreen extends Component {
                 <Header/>
                 <Text style={{textAlign:"center",fontSize:24,margin:16}}>React Hooks</Text>
                 <Hello label="Hello"/>
+                <DisplayHelloRedux/>
             </View>
         );
     }

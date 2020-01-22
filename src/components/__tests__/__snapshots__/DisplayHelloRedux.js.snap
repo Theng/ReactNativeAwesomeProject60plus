@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DisplayHelloRedux /> should match snapshot 1`] = `
+<Text
+  style={
+    Object {
+      "color": "red",
+    }
+  }
+  testID="hello-redux"
+>
+  Hello redux test
+</Text>
+`;

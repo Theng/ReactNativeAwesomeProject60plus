@@ -1,6 +1,16 @@
 import { combineReducers } from "redux";
 import rc from "../rc";
 
+const helloState = {
+    data: "Hello redux"
+};
+
+export const hello = (state = helloState, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};
 const sampleState = {
     data: null,
     fetching: false,
@@ -21,5 +31,6 @@ export const sample = (state = sampleState, action) => {
 };
 
 export const rootReducer = combineReducers({
+    hello,
     sample
 });
