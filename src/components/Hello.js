@@ -32,6 +32,7 @@ function MyComponent({ label }) {
 
     return (
         <View>
+            <Text testID={'text'}>{label}</Text>
             <Text>useCallback: {label + ": " + number}</Text>
             <INC label="Increase Hello" increment={increment} />
             <Text>useMemo: sum (a+b): {mySum}</Text>

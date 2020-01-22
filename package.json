@@ -26,6 +26,7 @@
     "react-native-fast-image": "^7.0.2",
     "react-native-gesture-handler": "^1.3.0",
     "react-native-reanimated": "^1.1.0",
+    "react-native-testing-library": "^1.12.0",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^3.11.1",
     "react-redux": "^7.1.3",
@@ -45,7 +46,10 @@
     "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "testPathIgnorePatterns": [
+      "/e2e/"
+    ]
   },
   "detox": {
     "configurations": {
