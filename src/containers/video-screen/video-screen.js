@@ -27,10 +27,12 @@ class HomeScreen extends Component {
 
     render() {
         console.log("Main render")
+        // http://sample.vodobox.com/planete_interdite/planete_interdite_alternate.m3u8
+        // https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8
         return (
             <View style={{flex:1}}>
                 <View style={{flex:1}}>
-                    <VideoPlayer close={this.close} uri='https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'/>
+                    <VideoPlayer close={this.close} uri='https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8'/>
                 </View>
             </View>
         );
