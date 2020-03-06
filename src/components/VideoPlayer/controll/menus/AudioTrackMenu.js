@@ -11,7 +11,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 const AudioTrackMenu = ({ closeMenu, videoData, setAudioTrack, audioTrack }) => {
     const menuItem = (i, index) => {
         return (
-            <TouchableOpacity
+            i.title?<TouchableOpacity
                 onPress={() => {
                     setAudioTrack({
                         type: "title",
@@ -32,7 +32,7 @@ const AudioTrackMenu = ({ closeMenu, videoData, setAudioTrack, audioTrack }) => 
                 <Text style={{ color: "black", marginLeft: 16 }}>
                     {i.title}
                 </Text>
-            </TouchableOpacity>
+            </TouchableOpacity>:null
         );
     };
 

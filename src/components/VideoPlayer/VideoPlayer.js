@@ -25,10 +25,17 @@ const VideoPlayer = ({uri, close}) => {
   const [audioTrack,setAudioTrack] = useState(null)
   const onLoad = useCallback(
     data => {
-      console.log("on load:"+ JSON.stringify(data))
+      console.log("on load:",(data))
       setVideoData(data)
       setVideoDuration(data.duration);
       setVideoLoading(false);
+      if(data.audioTracks){
+        data.audioTracks[0].title?
+        setAudioTrack({
+          type: "title",
+          value: data.audioTracks[0].title
+        }):null
+      }
     },
     [setVideoDuration, setVideoLoading],
   );

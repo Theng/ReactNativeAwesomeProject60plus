@@ -11,7 +11,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 const VideoMenu = ({ closeMenu, videoData, setSubtitle, subtitle }) => {
     const menuItem = (i, index) => {
         return (
-            <TouchableOpacity
+            i.title?<TouchableOpacity
                 onPress={() => {
                     setSubtitle({
                         type: "title",
@@ -32,7 +32,7 @@ const VideoMenu = ({ closeMenu, videoData, setSubtitle, subtitle }) => {
                 <Text style={{ color: "black", marginLeft: 16 }}>
                     {i.title}
                 </Text>
-            </TouchableOpacity>
+            </TouchableOpacity>:null
         );
     };
 
