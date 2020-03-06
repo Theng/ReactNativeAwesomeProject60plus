@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, TouchableHighlight } from "react-native";
+import { View, StatusBar } from "react-native";
 import VideoPlayer from "../../components/VideoPlayer"
 import Icon from 'react-native-vector-icons/Ionicons';
 import c from "../../constant"
@@ -14,7 +14,11 @@ class HomeScreen extends Component {
     }
 
     componentDidMount() {
-        
+        StatusBar.setHidden(true);
+    }
+
+    componentWillUnmount() {
+        StatusBar.setHidden(false);
     }
 
     close = () =>{

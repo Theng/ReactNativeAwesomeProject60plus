@@ -68,7 +68,7 @@ const VideoControll = ({
         <View style={{ flex: 1 }}>
             <View
                 style={{
-                    marginTop: isIphoneX ? 32 : platform == "ios" ? 22 : 0,
+                    marginTop: isIphoneX ? 32 : platform == "ios" ? 22 : 16,
 					marginLeft: 10,
 					marginRight:10,
 					justifyContent:"space-between",

@@ -9,9 +9,9 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 
 const VideoMenu = ({closeMenu, openCaptionMenu, openPlayBackSpeedMenu, playBackSpeed, openAudioTrackMenu}) => {
     
-    const menuItem = ({label, icon, press}) =>{
+    const menuItem = ({id,label, icon, press}) =>{
         return(
-            <TouchableOpacity onPress={press} style={{padding:16, flexDirection:"row",alignItems:"center"}}>
+            <TouchableOpacity key={"menuItem"+id} onPress={press} style={{padding:16, flexDirection:"row",alignItems:"center"}}>
                 <Icon name={icon} size={24} color="black" />
                 <Text style={{color:"black", marginLeft:16}}>
                 {label}</Text>
@@ -28,9 +28,9 @@ const VideoMenu = ({closeMenu, openCaptionMenu, openPlayBackSpeedMenu, playBackS
             </TouchableWithoutFeedback>
             <View style={{ backgroundColor:"white" }}>
                 {/* <ScrollView> */}
-                    {menuItem({label:"Audio Tracks",icon:"audio-description", press:openAudioTrackMenu})}
-                    {menuItem({label:"Captions",icon:"closed-captioning", press:openCaptionMenu})}
-                    {menuItem({label:"Playback speed - "+playBackSpeed.label,icon:"clock", press:openPlayBackSpeedMenu})}
+                    {menuItem({id:1,label:"Audio Tracks",icon:"audio-description", press:openAudioTrackMenu})}
+                    {menuItem({id:2,label:"Captions",icon:"closed-captioning", press:openCaptionMenu})}
+                    {menuItem({id:3,label:"Playback speed - "+playBackSpeed.label,icon:"clock", press:openPlayBackSpeedMenu})}
                 {/* </ScrollView> */}
             </View>
         </View>

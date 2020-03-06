@@ -28,11 +28,12 @@ const VideoPlayer = ({uri, close}) => {
       setVideoData(data)
       setVideoDuration(data.duration);
       setVideoLoading(false);
-      data?.audioTracks[0]?
-      setAudioTrack({
-        type: "title",
-        value: data?.audioTracks[0]?.title
-      }):null
+      if(data.audioTracks){
+        setAudioTrack({
+          type: "title",
+          value: data.audioTracks[0].title
+        })
+      }
     },
     [setVideoDuration, setVideoLoading],
   );
