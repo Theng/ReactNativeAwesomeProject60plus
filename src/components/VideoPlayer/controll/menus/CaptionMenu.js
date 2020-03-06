@@ -69,7 +69,7 @@ const VideoMenu = ({ closeMenu, videoData, setSubtitle, subtitle }) => {
                               return menuItem(i, index);
                           })
                         : null}
-                    <View style={{height:32}}/>
+                    <View key="space-002" style={{height:32}}/>
                 </ScrollView>
             </View>
         </View>

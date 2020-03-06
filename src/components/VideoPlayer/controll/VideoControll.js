@@ -73,7 +73,7 @@ const VideoControll = ({
 					marginRight:10,
 					justifyContent:"space-between",
 					flexDirection:"row",
-					height:24,
+					height:62,
 					zIndex:999
                 }}
             >
@@ -89,6 +89,11 @@ const VideoControll = ({
                 >
                     <Icon name="arrow-circle-left" size={20} color="white" />
                 </TouchableOpacity>
+                <TouchableWithoutFeedback
+                    onPress={!pause ? showHideControll : null}
+                >
+                    <View style={{flex:1, marginLeft:16, marginRight:16}}/>
+                </TouchableWithoutFeedback>
 				<TouchableOpacity
                     style={{
                         width: 48,
@@ -196,7 +201,10 @@ const VideoControll = ({
                     <Text style={styles.time}>
                         {formatTime(parseInt(videoDuration))}
                     </Text>
-                    <TouchableOpacity onPress={toggleFullScreen} hitSlop={hitSlop}>
+                    <TouchableOpacity 
+                    // onPress={toggleFullScreen} 
+                    onPress={()=>alert("disabled")} 
+                    hitSlop={hitSlop}>
                         <Icon name="expand" size={20} color="white" light />
                     </TouchableOpacity>
                 </View>
@@ -215,7 +223,9 @@ const styles = {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        paddingTop: 32
+        // paddingTop: 32
+        paddingBottom:4,
+        marginBottom:8
     },
     bottomContainer: {
         flexDirection: "row",

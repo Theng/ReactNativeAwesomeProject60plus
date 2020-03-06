@@ -59,7 +59,7 @@ const PlayBackSpeedMenu = ({ closeMenu, setPlayBackSpeed, playBackSpeed }) => {
                               return menuItem(i, index);
                           })
                        }
-                       <View style={{height:32}}/>
+                       <View  key="space-003" style={{height:32}}/>
                 </ScrollView>
             </View>
         </View>

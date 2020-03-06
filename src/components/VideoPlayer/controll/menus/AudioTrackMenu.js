@@ -56,7 +56,7 @@ const AudioTrackMenu = ({ closeMenu, videoData, setAudioTrack, audioTrack }) => 
                               return menuItem(i, index);
                           })
                         : null}
-                    <View style={{height:32}}/>
+                    <View key="space-001" style={{height:32}}/>
                 </ScrollView>
             </View>
         </View>
