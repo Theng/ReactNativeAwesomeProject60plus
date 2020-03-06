@@ -30,11 +30,15 @@ const AudioTrackMenu = ({ closeMenu, videoData, setAudioTrack, audioTrack }) => 
                     {audioTrack?.value==i.title?<Icon name="check" size={16} color="gray" />:null}
                 </View>
                 <Text style={{ color: "black", marginLeft: 16 }}>
-                    {i.title}
+                    {capitalizeFirstLetter(i.title).replace(":", " - ")}
                 </Text>
             </TouchableOpacity>:null
         );
     };
+
+    const  capitalizeFirstLetter=(string)=> {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     return (
         <View style={{ flex: 1 }}>

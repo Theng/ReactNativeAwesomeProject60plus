@@ -32,7 +32,7 @@ class HomeScreen extends Component {
         return (
             <View style={{flex:1}}>
                 <View style={{flex:1}}>
-                    <VideoPlayer close={this.close} uri='https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8'/>
+                    <VideoPlayer close={this.close} uri='https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'/>
                 </View>
             </View>
         );
