@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { 
+    View, 
+    // Text,
+    Button
+} from "react-native";
 import Header from "../../components/MainHeader"
-import Hello from "../../components/Hello"
-import DisplayHelloRedux from "../../components/DisplayHelloRedux"
+// import Hello from "../../components/Hello"
+// import DisplayHelloRedux from "../../components/DisplayHelloRedux"
 class HomeScreen extends Component {
     list = []
     number = 0
@@ -22,9 +26,10 @@ class HomeScreen extends Component {
         return (
             <View style={{flex:1}} testID="home-screen">
                 <Header/>
-                <Text style={{textAlign:"center",fontSize:24,margin:16}}>React Hooks</Text>
+                {/* <Text style={{textAlign:"center",fontSize:24,margin:16}}>React Hooks</Text>
                 <Hello label="Hello"/>
-                <DisplayHelloRedux/>
+                <DisplayHelloRedux/> */}
+                <Button title="Play" onPress={()=>this.props.navigation.navigate("VideoScreen")}/>
             </View>
         );
     }

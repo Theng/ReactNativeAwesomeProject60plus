@@ -9,7 +9,11 @@
 
 import React, { Component } from "react";
 
-import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import {
+    createBottomTabNavigator,
+    createAppContainer,
+    createStackNavigator
+} from "react-navigation";
 import { Provider } from "react-redux";
 import { applyMiddleware, compose, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
@@ -19,10 +23,9 @@ import rootSagas from "./redux/sagas";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
 
-
-
 import HomeScreen from "./containers/home/home";
 import AboutScreen from "./containers/about/about";
+import VideoScreen from "./containers/video-screen/video-screen";
 import CusomTabs from "./components/CusomTabs";
 
 // init language
@@ -39,23 +42,30 @@ export const store = createStore(
 sagaMiddleware.run(rootSagas);
 // Redux =======
 
-const TabNavigator = createAppContainer(
-    createBottomTabNavigator(
+const RootTabNavigator = createBottomTabNavigator(
+    {
+        HomeScreen: HomeScreen,
+        AboutScreen: AboutScreen
+    },
+    {
+        animationEnabled: false,
+        swipeEnabled: false,
+        tabBarComponent: function tabBar({ navigation, screenProps }) {
+            return (
+                <CusomTabs navigation={navigation} screenProps={screenProps} />
+            );
+        }
+    }
+);
+
+const RootStack = createAppContainer(
+    createStackNavigator(
         {
-            HomeScreen: HomeScreen,
-            AboutScreen: AboutScreen,
+            RootTabNavigator: { screen: RootTabNavigator },
+            VideoScreen: { screen: VideoScreen }
         },
         {
-            animationEnabled: false,
-            swipeEnabled: false,
-            tabBarComponent: function tabBar({ navigation, screenProps }) {
-                return (
-                    <CusomTabs
-                        navigation={navigation}
-                        screenProps={screenProps}
-                    />
-                );
-            }
+            headerMode: "none"
         }
     )
 );
@@ -69,7 +79,7 @@ class RootApp extends Component {
         return (
             <Provider store={store}>
                 <I18nextProvider i18n={i18n}>
-                    <TabNavigator />
+                    <RootStack />
                 </I18nextProvider>
             </Provider>
         );
