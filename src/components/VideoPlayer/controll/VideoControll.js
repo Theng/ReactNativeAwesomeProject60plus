@@ -35,11 +35,12 @@ const VideoControll = ({
     videoDuration,
     pause,
     playPauseVideo,
-    toggleFullScreen,
+    // toggleFullScreen,
     toggleMute,
     muted,
 	seekVideo,
-	openMenu
+    openMenu,
+    buffering
 }) => {
     const [showTimeRemaining, setShowTimeRemaining] = useState("");
     useEffect(() => calculateTime, [videoProgress]);
@@ -111,9 +112,11 @@ const VideoControll = ({
                 onPress={!pause ? showHideControll : null}
             >
                 <View style={styles.topContainer}>
-                    {videoProgress.playableDuration <= 0 &&
-                    videoProgress.currentTime <
-                        videoProgress.seekableDuration ? (
+                    {
+                    //     videoProgress.playableDuration <= 0 &&
+                    // videoProgress.currentTime <
+                    //     videoProgress.seekableDuration && 
+                        buffering? (
                         <ActivityIndicator
                             size="large"
                             color="white"
@@ -167,7 +170,7 @@ const VideoControll = ({
                     >
                         <View
                             style={{
-                                width: "100%",
+                                width:(videoProgress.playableDuration?((100 * parseInt(videoProgress.playableDuration)) / parseInt(videoDuration))*(parseInt(100)/100):0)+"%",
                                 height: 2,
                                 backgroundColor: seekerColor.loaded
                             }}

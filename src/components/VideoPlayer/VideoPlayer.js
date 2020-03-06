@@ -23,6 +23,7 @@ const VideoPlayer = ({uri, close}) => {
   const [playBackSpeed,setPlayBackSpeed] = useState({label:"Normal",value:1})
   const [audioTrackMenu, setShowAudioTrackMenu] = useState(false);
   const [audioTrack,setAudioTrack] = useState(null)
+  const [buffering,setBuffering] = useState(false)
   const onLoad = useCallback(
     data => {
       console.log("on load:",data)
@@ -37,6 +38,14 @@ const VideoPlayer = ({uri, close}) => {
       }
     },
     [setVideoDuration, setVideoLoading],
+  );
+
+  const onBuffering = useCallback(
+    data => {
+      console.log("onBuffering:",data)
+      setBuffering(data.isBuffering?true:false)
+    },
+    [setBuffering],
   );
 
   const onProgress = useCallback(
@@ -125,6 +134,7 @@ const VideoPlayer = ({uri, close}) => {
         muted={muted}
         resizeMode="contain"
         rate={playBackSpeed.value}
+        onBuffer={onBuffering}
       />
       <TouchableWithoutFeedback onPress={showHideControll}>
         <View
@@ -151,6 +161,7 @@ const VideoPlayer = ({uri, close}) => {
             seekVideo={seekVideo}
             close={close}
             openMenu={openMenu}
+            buffering={buffering}
           />
         </View>
       )}
